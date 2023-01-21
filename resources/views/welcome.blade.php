@@ -49,7 +49,7 @@
           <div id="collapseBootstrap1" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               {{-- <router-link class="collapse-item" to="/add-student">Add</router-link> --}}
-              <router-link class="collapse-item" to="/students">All Students</router-link>
+              <router-link class="collapse-item" to="/my-parcels-list">My Parcels list</router-link>
             </div>
           </div>
         </li>
@@ -62,39 +62,10 @@
           <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               {{-- <router-link class="collapse-item" to="/add-course">Add Course</router-link> --}}
-              <router-link class="collapse-item" to="/courses">All Parcels</router-link>
+              <router-link class="collapse-item" to="/all-parcels">All Parcels</router-link>
             </div>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
-            aria-expanded="true" aria-controls="collapseBootstrap3">
-            <i class="far fa-fw fa-window-maximize"></i>
-            <span>Programs</span>
-          </a>
-          <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <router-link class="collapse-item" to="/add-program">Add Program</router-link>
-              <router-link class="collapse-item" to="/programs">All Programs</router-link>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap4"
-            aria-expanded="true" aria-controls="collapseBootstrap4">
-            <i class="far fa-fw fa-window-maximize"></i>
-            <span>Levels</span>
-          </a>
-          <div id="collapseBootstrap4" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <router-link class="collapse-item" to="/add-level">Add Level</router-link>
-              <router-link class="collapse-item" to="/levels">All Levels</router-link>
-            </div>
-          </div>
-        </li>
-
-
-
         <hr class="sidebar-divider">
         <div class="version" id="version-ruangadmin"></div>
       </ul>
