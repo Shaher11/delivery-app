@@ -1,6 +1,6 @@
-## About Student Management System
+## About Parcels To Home System
 
-This is a student management web app. 
+This is a delivery web app. 
 The technologies that were used to develop this app are "Laravel, Vue.js TailwindCSS and RestAPI,"
 
 ### Technologies
