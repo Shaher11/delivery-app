@@ -25,7 +25,7 @@ export const routes = [
     // In Progress Routes
     { path: "/my-parcels-list", component: myParcelsList, name: "my-parcels-list" },
     // To-Do Routes
-    { path: "/all-parcels", component: allParcels, name: "all-parcels" },
+    { path: "/parcels", component: allParcels, name: "parcels" },
 
 
 

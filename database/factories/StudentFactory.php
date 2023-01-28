@@ -26,8 +26,8 @@ class StudentFactory extends Factory
         // $gender = $this->faker->randomElement(['male', 'female']);
 
         return [
-            'level_id' => Level::inRandomOrder()->first()->id,
-            'program_id' => Program::inRandomOrder()->first()->id,
+            // 'level_id' => Level::inRandomOrder()->first()->id,
+            // 'program_id' => Program::inRandomOrder()->first()->id,
             
             'identifier' => $this->faker->numerify('######'),
             'first_name' => $this->faker->firstName(),

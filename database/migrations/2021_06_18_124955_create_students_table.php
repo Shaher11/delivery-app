@@ -15,11 +15,11 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('level_id')->nullable();
-            $table->foreign('level_id')->references('id')->on('levels')->onDelete('set null');
+            // $table->unsignedBigInteger('level_id')->nullable();
+            // $table->foreign('level_id')->references('id')->on('levels')->onDelete('set null');
             
-            $table->unsignedBigInteger('program_id')->nullable();
-            $table->foreign('program_id')->references('id')->on('programs')->onDelete('set null');
+            // $table->unsignedBigInteger('program_id')->nullable();
+            // $table->foreign('program_id')->references('id')->on('programs')->onDelete('set null');
 
             $table->unsignedBigInteger('identifier')->unique()->index();
             

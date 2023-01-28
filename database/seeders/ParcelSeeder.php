@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Parcel;
 use Illuminate\Database\Seeder;
 
-class SenderSeeder extends Seeder
+class ParcelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,9 +14,6 @@ class SenderSeeder extends Seeder
      */
     public function run()
     {
-        Sender::create([
-            'name' => 'Level 1',
-            'description' => 'This is level 1 description'
-        ]);
+        Parcel::factory(20)->create();
     }
 }

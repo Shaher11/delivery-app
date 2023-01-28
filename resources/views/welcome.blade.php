@@ -37,35 +37,42 @@
             <span>Dashboard</span></router-link>
         </li>
         <hr class="sidebar-divider">
-        <div class="sidebar-heading">
-          My Workspace
-        </div>
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap1"
-            aria-expanded="true" aria-controls="collapseBootstrap1">
-            <i class="far fa-fw fa-window-maximize"></i>
-            <span>In Prograss</span>
-          </a>
-          <div id="collapseBootstrap1" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              {{-- <router-link class="collapse-item" to="/add-student">Add</router-link> --}}
-              <router-link class="collapse-item" to="/my-parcels-list">My Parcels list</router-link>
-            </div>
+     
+        {{-- @if (Auth::user()->role)   --}}
+          
+          <div class="sidebar-heading">
+            My Workspace
           </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap2"
-            aria-expanded="true" aria-controls="collapseBootstrap2">
-            <i class="far fa-fw fa-window-maximize"></i>
-            <span>To-do</span>
-          </a>
-          <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              {{-- <router-link class="collapse-item" to="/add-course">Add Course</router-link> --}}
-              <router-link class="collapse-item" to="/all-parcels">All Parcels</router-link>
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap1"
+              aria-expanded="true" aria-controls="collapseBootstrap1">
+              <i class="far fa-fw fa-window-maximize"></i>
+              <span>In Prograss</span>
+            </a>
+            <div id="collapseBootstrap1" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                {{-- <router-link class="collapse-item" to="/add-student">Add</router-link> --}}
+                <router-link class="collapse-item" to="/my-parcels-list">My Parcels list</router-link>
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap2"
+              aria-expanded="true" aria-controls="collapseBootstrap2">
+              <i class="far fa-fw fa-window-maximize"></i>
+              <span>To-do</span>
+            </a>
+            <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                {{-- <router-link class="collapse-item" to="/add-course">Add Course</router-link> --}}
+                <router-link class="collapse-item" to="/parcels">All Parcels</router-link>
+              </div>
+            </div>
+          </li>
+
+        {{-- @endif   --}}
+
+
         <hr class="sidebar-divider">
         <div class="version" id="version-ruangadmin"></div>
       </ul>

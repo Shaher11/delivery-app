@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\LevelController;
+use App\Http\Controllers\Api\ParcelController;
 use App\Http\Controllers\Api\ProgramController;
 use App\Http\Controllers\Api\StudentController;
 use Illuminate\Http\Request;
@@ -35,15 +36,38 @@ Route::group([
 
 });
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
+
+Route::group(['prefix' => 'parcels'], function () {
+    
+    Route::get('', [ParcelController::class,'index']);
+    Route::get('biker/my-parcels', [ParcelController::class,'bikerParcels']);
+});
+
+// Route::get('/parcels', [CourseController::class,'index']);
+
+// Route::group(['middleware' => 'auth'], function () {
+
+    // Route::group(['middleware' => 'role:Admin' ], function () {
+    //     Route::apiResource('/parcel', CourseController::class);
+    // });
+
+    // Route::group(['middleware' => 'role:Biker'], function () {
+        
+    // });
+    
+    // Route::group(['middleware' => 'role:Sender'], function () {
+        
+    // });
+    
+    // Route::apiResource('/parcel', CourseController::class);
+    // Route::apiResource('/student', StudentController::class);
+    // Route::apiResource('/course', CourseController::class);
+
+    Route::post('/student/addCourse', [StudentController::class, 'addCourse'])->name('student.addCourse');
+    Route::apiResource('/program', ProgramController::class);
+    Route::apiResource('/level', LevelController::class);
+
+
+
+
 // });
-
-
-Route::apiResource('/student', StudentController::class);
-Route::post('/student/addCourse', [StudentController::class, 'addCourse'])->name('student.addCourse');
-
-
-Route::apiResource('/course', CourseController::class);
-Route::apiResource('/program', ProgramController::class);
-Route::apiResource('/level', LevelController::class);

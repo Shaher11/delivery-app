@@ -3,7 +3,8 @@
 <template>
   
   <div>
-
+    <br>
+    <!-- <input type="text" v-model="searchTerm" class="form-control" style="width: 300px;" placeholder="Search using Course Name"> -->
 
     <div class="row">
               <div class="col-lg-12 mb-4">
@@ -17,20 +18,26 @@
                       <thead class="thead-light">
                         <tr>
                           <th>Code</th>
-                          <th>Course Name</th>
+                          <th>Pick up point</th>
+                          <th>Drop off point</th>
+                          <th>Sender name</th>
                           <th>Description</th>
                           <th>Action</th>
-                        </tr>7
+                        </tr>
                       </thead>
                       <tbody>
           
-                        <tr v-for="course in filtersearch" :key="course.id">
-                          <td>{{ course.code }}</td>
-                          <td>{{ course.name }}</td>
-                          <td>{{ course.description }}</td>
+                        <tr v-for="parcel in parcels" :key="parcel.id">
+                          <td>{{ parcel.code }}</td>
+                          <td>{{ parcel.pick_up_point }}</td>
+                          <td>{{ parcel.drop_off_point }}</td>
+                          <td>{{ parcel.sender.first_name }} {{ parcel.sender.last_name }}</td>
+                          <td>{{ parcel.description }}</td>
                           <td>
-                            <router-link :to="{name: 'edit-course', params:{id:course.id}}" class="btn btn-sm btn-primary">Edit</router-link>
-                            <button @click="deleteCourse(course.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></button>
+                            <button @click="deleteparcel(parcel.id)" class="btn btn-sm btn-success"><font color="#ffffff">Pick</font></button>
+
+                            <!-- <button @click="deleteparcel(parcel.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></button> -->
+                            <!-- <router-link :to="{first_name: 'edit-parcel', params:{id:parcel.id}}" class="btn btn-sm btn-primary">Edit</router-link> -->
                           </td>
                         </tr>
                       
@@ -57,30 +64,30 @@
   export default {
     created(){
       if (!User.loggedIn()) {
-        this.$router.push({name: '/'})
+        this.$router.push({first_name: '/'})
       }
     },
     data(){
       return{
-        courses:[],
+        parcels:[],
         searchTerm:''
       }
     },
-    computed:{
-      filtersearch(){
-      return this.courses.filter(course => {
-         return course.name.match(this.searchTerm)
-      }) 
-      }
-    },  
+    // computed:{
+    //   filtersearch(){
+    //   return this.parcels.filter(parcel => {
+    //      return parcel.code.match(this.searchTerm)
+    //   }) 
+    //   }
+    // },  
  
   methods:{
-    allCourse(){
-      axios.get('/api/course/')
-      .then(({data}) => (this.courses = data))
+    allParcels(){
+      axios.get('/api/parcels/')
+      .then( ({data}) => (this.parcels = data) )
       .catch()
     },
-  deleteCourse(id){
+  deleteparcel(id){
              Swal.fire({
               title: 'Are you sure?',
               text: "You won't be able to revert this!",
@@ -91,14 +98,14 @@
               confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
               if (result.value) {
-                axios.delete('/api/course/'+id)
+                axios.delete('/api/parcel/'+id)
                .then(() => {
-                this.courses = this.courses.filter(course => {
-                  return course.id != id
+                this.parcels = this.parcels.filter(parcel => {
+                  return parcel.id != id
                 })
                })
                .catch(() => {
-                this.$router.push({name: 'courses'})
+                this.$router.push({code: 'parcels'})
                })
                 Swal.fire(
                   'Deleted!',
@@ -112,7 +119,7 @@
 
   },
   created(){
-    this.allCourse();
+    this.allParcels();
   } 
   
 

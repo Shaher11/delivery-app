@@ -23,6 +23,10 @@ class User extends Authenticatable implements JWTSubject
         'password',
     ];
 
+    const TYPEADMIN = 1;  //Admin
+    const TYPEBIKER = 2;  //Biker
+    const TYPESENDER = 3;  //Sender
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -60,5 +64,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

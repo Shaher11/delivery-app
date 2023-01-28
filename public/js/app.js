@@ -2503,40 +2503,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
       this.$router.push({
-        name: '/'
+        first_name: '/'
       });
     }
   },
   data: function data() {
     return {
-      courses: [],
+      parcels: [],
       searchTerm: ''
     };
   },
-  computed: {
-    filtersearch: function filtersearch() {
+  // computed:{
+  //   filtersearch(){
+  //   return this.parcels.filter(parcel => {
+  //      return parcel.code.match(this.searchTerm)
+  //   }) 
+  //   }
+  // },  
+  methods: {
+    allParcels: function allParcels() {
       var _this = this;
 
-      return this.courses.filter(function (course) {
-        return course.name.match(_this.searchTerm);
-      });
-    }
-  },
-  methods: {
-    allCourse: function allCourse() {
-      var _this2 = this;
-
-      axios.get('/api/course/').then(function (_ref) {
+      axios.get('/api/parcels/').then(function (_ref) {
         var data = _ref.data;
-        return _this2.courses = data;
+        return _this.parcels = data;
       })["catch"]();
     },
-    deleteCourse: function deleteCourse(id) {
-      var _this3 = this;
+    deleteparcel: function deleteparcel(id) {
+      var _this2 = this;
 
       Swal.fire({
         title: 'Are you sure?',
@@ -2548,13 +2553,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]('/api/course/' + id).then(function () {
-            _this3.courses = _this3.courses.filter(function (course) {
-              return course.id != id;
+          axios["delete"]('/api/parcel/' + id).then(function () {
+            _this2.parcels = _this2.parcels.filter(function (parcel) {
+              return parcel.id != id;
             });
           })["catch"](function () {
-            _this3.$router.push({
-              name: 'courses'
+            _this2.$router.push({
+              code: 'parcels'
             });
           });
           Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
@@ -2563,7 +2568,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }
 }, "created", function created() {
-  this.allCourse();
+  this.allParcels();
 }));
 
 /***/ }),
@@ -2914,9 +2919,9 @@ var routes = [{
   name: "my-parcels-list"
 }, // To-Do Routes
 {
-  path: "/all-parcels",
+  path: "/parcels",
   component: allParcels,
-  name: "all-parcels"
+  name: "parcels"
 } // { path: "/add-course", component: addCourse, name: "add-course" },
 // { path: "/edit-course/:id", component: editCourse, name: "edit-course" }
 ];
@@ -46643,6 +46648,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("br"),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-lg-12 mb-4" }, [
         _c("div", { staticClass: "card" }, [
@@ -46657,51 +46664,43 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.filtersearch, function(course) {
-                    return _c("tr", { key: course.id }, [
-                      _c("td", [_vm._v(_vm._s(course.code))]),
+                  _vm._l(_vm.parcels, function(parcel) {
+                    return _c("tr", { key: parcel.id }, [
+                      _c("td", [_vm._v(_vm._s(parcel.code))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(course.name))]),
+                      _c("td", [_vm._v(_vm._s(parcel.pick_up_point))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(course.description))]),
+                      _c("td", [_vm._v(_vm._s(parcel.drop_off_point))]),
                       _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-sm btn-primary",
-                              attrs: {
-                                to: {
-                                  name: "edit-course",
-                                  params: { id: course.id }
-                                }
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(parcel.sender.first_name) +
+                            " " +
+                            _vm._s(parcel.sender.last_name)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(parcel.description))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-success",
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteparcel(parcel.id)
                               }
-                            },
-                            [_vm._v("Edit")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-danger",
-                              on: {
-                                click: function($event) {
-                                  return _vm.deleteCourse(course.id)
-                                }
-                              }
-                            },
-                            [
-                              _c("font", { attrs: { color: "#ffffff" } }, [
-                                _vm._v("Delete")
-                              ])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
+                            }
+                          },
+                          [
+                            _c("font", { attrs: { color: "#ffffff" } }, [
+                              _vm._v("Pick")
+                            ])
+                          ],
+                          1
+                        )
+                      ])
                     ])
                   }),
                   0
@@ -46742,13 +46741,16 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Code")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Course Name")]),
+        _c("th", [_vm._v("Pick up point")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Drop off point")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Sender name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Description")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
-      ]),
-      _vm._v("7\n                    ")
+      ])
     ])
   }
 ]
